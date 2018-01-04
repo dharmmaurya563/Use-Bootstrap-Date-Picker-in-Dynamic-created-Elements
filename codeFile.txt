@@ -1,0 +1,55 @@
+ 
+<html>
+<body>
+
+<!-- Table-->
+
+ <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <th style="width: 35%">Start Date</th>
+                                            <th style="width: 45%">File</th>
+                                             <th style="width:10%">Action</th>
+                                            <th style="width: 10%">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                           
+                                            <td>
+                                                <input type="text" class="form-control dateSelector" /></td>
+                                            <td>
+                                                <input type="file" accept=".pdf,.doc,.docx" class="form-control" multiple="" /></td>
+                                            <td><a class="btn btn-danger" onclick="if(!$(this).parent().parent().is(':first-child')){$(this).parent().parent().remove();}"><i class="fa fa-trash-o"></i></a></td>
+                                            <td><span class="badge bg-red">Pending</span></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5"><a href="javascript:void(0);" onclick="fn_AddRow()">Add row</a></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+<script>
+function fn_AddRow() {
+            var $tr = $("#tblAddOrder tbody tr:first");
+            var $clone = $tr.clone();
+            $clone.find(':text').val('');           
+            $tr.after($clone);
+            $('.dateSelector').datepicker({
+                dateFormat: 'dd/mm/yyyy',
+                position: 'bottom left'
+            });
+            var d = new Date();
+            var currDate = d.getDate();
+            var currMonth = d.getMonth() + 1;
+            var currYear = d.getFullYear();
+            var dateStr = currDate + "/" + currMonth + "/" + currYear;
+            $('.dateSelector').val(dateStr);
+        }
+
+</script>
+</body>
+
+</html> 
